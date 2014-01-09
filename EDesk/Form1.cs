@@ -7,7 +7,6 @@ using System.Linq;
 using System.Security.Policy;
 using System.Text;
 using System.Windows.Forms;
-using Microsoft.Win32;
 
 namespace EDesk
 {
@@ -16,26 +15,6 @@ namespace EDesk
     {
         public Form1()
         {
-            RegistryKey rsg = null;
-            try
-            {
-                rsg = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_BROWSER_EMULATION", true);   //true表可以修改
-            }
-            catch (Exception ex)
-            {
-                Registry.LocalMachine.CreateSubKey(@"SOFTWARE\Microsoft\Internet Explorer\MAIN\FeatureControl\FEATURE_BROWSER_EMULATION");
-            }
-            if (rsg.GetValue("EDesk.exe") == null)
-            {
-                rsg.SetValue("EDesk.exe", 0x00002328, RegistryValueKind.DWord);       //写入
-                rsg.Close();
-                System.Diagnostics.Process.Start(System.Reflection.Assembly.GetExecutingAssembly().Location);
-                this.Close();
-            }
-            else
-            {
-                rsg.Close();
-            }
             InitializeComponent();
 
         }
