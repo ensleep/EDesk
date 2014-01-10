@@ -28,7 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.WBDesk = new System.Windows.Forms.WebBrowser();
+            this.notify = new System.Windows.Forms.NotifyIcon(this.components);
             this.SuspendLayout();
             // 
             // WBDesk
@@ -41,6 +44,17 @@
             this.WBDesk.TabIndex = 0;
             this.WBDesk.Url = new System.Uri("", System.UriKind.Relative);
             // 
+            // notify
+            // 
+            this.notify.BalloonTipText = "│＼＿＿╭╭╭╭╭＿＿／│ \r\n│　　　　　　　　　　　│ \r\n│　　　　　　　　　　　│ \r\n│　＞　　　　　　　●　 │ \r\n│≡　　╰┬┬┬╯　　≡│ \r\n" +
+    "│　　　　╰─╯　　　　│ \r\n╰──┬Ｏ───Ｏ┬──╯ \r\n　　　│EDesk │ \r\n　　　╰┬───┬╯";
+            this.notify.BalloonTipTitle = "EDesk为自由而战";
+            this.notify.Icon = ((System.Drawing.Icon)(resources.GetObject("notify.Icon")));
+            this.notify.Text = "EDesk";
+            this.notify.Visible = true;
+            this.notify.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notify_MouseDoubleClick);
+            this.notify.MouseMove += new System.Windows.Forms.MouseEventHandler(this.notify_MouseMove);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -49,10 +63,11 @@
             this.Controls.Add(this.WBDesk);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "Form1";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Text = "EDesk";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.SizeChanged += new System.EventHandler(this.Form1_SizeChanged);
             this.ResumeLayout(false);
 
         }
@@ -60,6 +75,7 @@
         #endregion
 
         private System.Windows.Forms.WebBrowser WBDesk;
+        private System.Windows.Forms.NotifyIcon notify;
     }
 }
 

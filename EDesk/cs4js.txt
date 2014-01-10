@@ -1,0 +1,14 @@
+﻿
+//本文件统计cs代码中为js提供的方法
+//规格为：
+//方法声明
+//说明
+//空行
+
+public void ChangeTaskBar()
+更改任务栏的显示与隐藏状态
+
+public void OpenMyComputer()
+打开我的电脑
+
+public void 
