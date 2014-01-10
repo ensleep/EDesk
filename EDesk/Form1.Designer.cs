@@ -42,7 +42,9 @@
             // 
             // WBDesk
             // 
+            this.WBDesk.ContextMenuStrip = this.nofityMenu;
             this.WBDesk.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.WBDesk.IsWebBrowserContextMenuEnabled = false;
             this.WBDesk.Location = new System.Drawing.Point(0, 0);
             this.WBDesk.MinimumSize = new System.Drawing.Size(20, 20);
             this.WBDesk.Name = "WBDesk";
@@ -69,7 +71,7 @@
             this.changeTaskBarColor,
             this.about});
             this.nofityMenu.Name = "notifyMenu";
-            this.nofityMenu.Size = new System.Drawing.Size(185, 70);
+            this.nofityMenu.Size = new System.Drawing.Size(185, 48);
             // 
             // changeTaskBarColor
             // 
