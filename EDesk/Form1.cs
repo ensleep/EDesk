@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Security.Policy;
 using System.Text;
 using System.Windows.Forms;
@@ -22,12 +23,18 @@ namespace EDesk
         /// </summary>
         public Form1()
         {
-            setFormOnDesktop();
+            //setFormOnDesktop();
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
-        {  
+        {
+            IntPtr pWnd =(IntPtr) FindWindow("Progman", null);
+            pWnd = FindWindowEx(pWnd, IntPtr.Zero, "SHELLDLL_DefVIew", null);
+            pWnd = FindWindowEx(pWnd, IntPtr.Zero, "SysListView32", null);
+            //IntPtr tWnd = new System.Windows.Interop.WindowInteropHelper(this).Handle;  
+
+            SetParent((int)this.Handle,(int) pWnd);
             //this.Top = 0;
             //this.Left = 0;
             //this.Width = Screen.PrimaryScreen.WorkingArea.Width;
@@ -37,7 +44,7 @@ namespace EDesk
             WBDesk.Url = new Uri(url);
             WBDesk.ObjectForScripting = this;
             WBDesk.ScriptErrorsSuppressed = false;
-            ChangeTaskBar();
+            ResetWin();
             Hashtable[] hsDesk = FileHelper.GetDeskTop();
         }
         protected override void OnClosing(CancelEventArgs e)
@@ -62,6 +69,22 @@ namespace EDesk
         {
             notify.ShowBalloonTip(3000);
         }
+
+        private void changeTaskBarColor_Click(object sender, EventArgs e)
+        {
+            if (colorDialogNotify.ShowDialog() == DialogResult.OK)
+            {
+                var s = colorDialogNotify.Color;
+                panel1.BackColor = s;
+            }
+        }
+
+        private void about_Click(object sender, EventArgs e)
+        {
+            AboutMe am = new AboutMe();
+            am.Show();
+        }
+
 
 
         

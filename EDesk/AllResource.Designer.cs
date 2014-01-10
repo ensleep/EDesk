@@ -61,6 +61,16 @@ namespace EDesk {
         }
         
         /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        internal static System.Drawing.Bitmap about {
+            get {
+                object obj = ResourceManager.GetObject("about", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 请重新安装程序，或联系软件开发者 的本地化字符串。
         /// </summary>
         internal static string BugCommitString {
@@ -94,16 +104,6 @@ namespace EDesk {
             get {
                 object obj = ResourceManager.GetObject("ico", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似于 (Icon) 的 System.Drawing.Icon 类型的本地化资源。
-        /// </summary>
-        internal static System.Drawing.Icon IconBase {
-            get {
-                object obj = ResourceManager.GetObject("IconBase", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
             }
         }
         
