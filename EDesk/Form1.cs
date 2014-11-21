@@ -18,6 +18,7 @@ namespace EDesk
     [System.Runtime.InteropServices.ComVisible(true)] 
     public partial class Form1 : Form
     {
+        public DateTime t1 = DateTime.Now;
         /// <summary>
         /// 构造方法
         /// </summary>
@@ -30,11 +31,25 @@ namespace EDesk
         private void Form1_Load(object sender, EventArgs e)
         {
             IntPtr pWnd =(IntPtr) FindWindow("Progman", null);
-            pWnd = FindWindowEx(pWnd, IntPtr.Zero, "SHELLDLL_DefVIew", null);
-            pWnd = FindWindowEx(pWnd, IntPtr.Zero, "SysListView32", null);
-            //IntPtr tWnd = new System.Windows.Interop.WindowInteropHelper(this).Handle;  
+            //pWnd = FindWindowEx(pWnd, IntPtr.Zero, "SHELLDLL_DefVIew", null);
+            //pWnd = FindWindowEx(pWnd, IntPtr.Zero, "SysListView32", null);
+            //IntPtr tWnd = new System.Windows.Interop.WindowInteropHelper(this).Handle;
 
-            SetParent((int)this.Handle,(int) pWnd);
+            ///win8
+            IntPtr dwndparent;
+            IntPtr dwndviem=IntPtr.Zero;
+            IntPtr dwdesktopicon;
+            dwndparent=FindWindowEx(IntPtr.Zero,IntPtr.Zero,"WorkerW","");//获得第一个WorkerW类的窗口
+            while((IntPtr.Zero==dwndviem)&&IntPtr.Zero!=dwndparent)
+            {
+            dwndviem=FindWindowEx(dwndparent,IntPtr.Zero,"SHELLDLL_DefView","");
+            dwndparent=FindWindowEx(IntPtr.Zero,dwndparent,"WorkerW","");
+            }
+            dwdesktopicon=FindWindowEx(dwndviem,IntPtr.Zero,"SysListView32","FolderView");
+            SetParent((int)this.Handle, (int)dwdesktopicon);
+
+            ///
+            //SetParent((int)this.Handle,(int) pWnd);
             //this.Top = 0;
             //this.Left = 0;
             //this.Width = Screen.PrimaryScreen.WorkingArea.Width;
@@ -46,6 +61,7 @@ namespace EDesk
             WBDesk.ScriptErrorsSuppressed = false;
             ResetWin();
             Hashtable[] hsDesk = FileHelper.GetDeskTop();
+            ChangeTaskBar();
         }
         protected override void OnClosing(CancelEventArgs e)
         {
@@ -67,7 +83,11 @@ namespace EDesk
 
         private void notify_MouseMove(object sender, MouseEventArgs e)
         {
-            notify.ShowBalloonTip(3000);
+            if (t1.AddSeconds(3) < DateTime.Now)
+            {
+                notify.ShowBalloonTip(3000);
+                t1 = DateTime.Now;
+            }
         }
 
         private void changeTaskBarColor_Click(object sender, EventArgs e)
@@ -78,7 +98,6 @@ namespace EDesk
                 panel1.BackColor = s;
             }
         }
-
         private void about_Click(object sender, EventArgs e)
         {
             AboutMe am = new AboutMe();

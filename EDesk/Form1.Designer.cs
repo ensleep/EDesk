@@ -31,10 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.WBDesk = new System.Windows.Forms.WebBrowser();
-            this.notify = new System.Windows.Forms.NotifyIcon(this.components);
             this.nofityMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.changeTaskBarColor = new System.Windows.Forms.ToolStripMenuItem();
             this.about = new System.Windows.Forms.ToolStripMenuItem();
+            this.notify = new System.Windows.Forms.NotifyIcon(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.colorDialogNotify = new System.Windows.Forms.ColorDialog();
             this.nofityMenu.SuspendLayout();
@@ -52,18 +52,6 @@
             this.WBDesk.Size = new System.Drawing.Size(862, 388);
             this.WBDesk.TabIndex = 0;
             this.WBDesk.Url = new System.Uri("", System.UriKind.Relative);
-            // 
-            // notify
-            // 
-            this.notify.BalloonTipText = "│＼＿＿╭╭╭╭╭＿＿／│ \r\n│　　　　　　　　　　　│ \r\n│　　　　　　　　　　　│ \r\n│　＞　　　　　　　●　 │ \r\n│≡　　╰┬┬┬╯　　≡│ \r\n" +
-    "│　　　　╰─╯　　　　│ \r\n╰──┬Ｏ───Ｏ┬──╯ \r\n　　　│EDesk │ \r\n　　　╰┬───┬╯";
-            this.notify.BalloonTipTitle = "EDesk为自由而战";
-            this.notify.ContextMenuStrip = this.nofityMenu;
-            this.notify.Icon = ((System.Drawing.Icon)(resources.GetObject("notify.Icon")));
-            this.notify.Text = "EDesk";
-            this.notify.Visible = true;
-            this.notify.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notify_MouseDoubleClick);
-            this.notify.MouseMove += new System.Windows.Forms.MouseEventHandler(this.notify_MouseMove);
             // 
             // nofityMenu
             // 
@@ -87,6 +75,18 @@
             this.about.Text = "关于...";
             this.about.Click += new System.EventHandler(this.about_Click);
             // 
+            // notify
+            // 
+            this.notify.BalloonTipText = "│＼＿＿╭╭╭╭╭＿＿／│ \r\n│　　　　　　　　　　　│ \r\n│　　　　　　　　　　　│ \r\n│　＞　　　　　　　●　 │ \r\n│≡　　╰┬┬┬╯　　≡│ \r\n" +
+    "│　　　　╰─╯　　　　│ \r\n╰──┬Ｏ───Ｏ┬──╯ \r\n　　　│EDesk │ \r\n　　　╰┬───┬╯";
+            this.notify.BalloonTipTitle = "EDesk为自由而战";
+            this.notify.ContextMenuStrip = this.nofityMenu;
+            this.notify.Icon = ((System.Drawing.Icon)(resources.GetObject("notify.Icon")));
+            this.notify.Text = "EDesk";
+            this.notify.Visible = true;
+            this.notify.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notify_MouseDoubleClick);
+            this.notify.MouseMove += new System.Windows.Forms.MouseEventHandler(this.notify_MouseMove);
+            // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -105,11 +105,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(862, 388);
+            this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.WBDesk);
             this.DoubleBuffered = true;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;

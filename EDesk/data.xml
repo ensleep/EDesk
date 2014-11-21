@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<edesk>
+  <content fromdesk="true">
+    <tiles>
+      <tile name="我的电脑" exec="::{20D04FE0-3AEA-1069-A2D8-08002B30309D}"></tile>
+    </tiles>
+  </content>
+</edesk>

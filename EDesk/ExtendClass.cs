@@ -100,30 +100,31 @@ namespace EDesk
         /// <summary>
         /// 更改任务栏的显示与隐藏状态,此方法与遮罩滚动条冲突，已停止使用
         /// </summary>
-        //public void ChangeTaskBar()
-        //{
-        //    if (this.Height != Screen.PrimaryScreen.WorkingArea.Height)
-        //    {
-        //        this.WindowState = FormWindowState.Normal;
-        //        this.Top = 0;
-        //        this.Left = 0;
-        //        this.Width = Screen.PrimaryScreen.WorkingArea.Width;
-        //        this.Height = Screen.PrimaryScreen.WorkingArea.Height;
-        //        ShowTaskBar();
-        //    }
-        //    else
-        //    {
-        //        this.WindowState = FormWindowState.Maximized;
-        //        HiddenTaskBar();
-        //    }
-        //}
+        public void ChangeTaskBar()
+        {
+            if (this.Height != Screen.PrimaryScreen.WorkingArea.Height)
+            {
+                this.WindowState = FormWindowState.Normal;
+                this.Top = 0;
+                this.Left = 0;
+                this.Width = Screen.PrimaryScreen.WorkingArea.Width;
+                this.Height = Screen.PrimaryScreen.WorkingArea.Height;
+                ShowTaskBar();
+            }
+            else
+            {
+                this.WindowState = FormWindowState.Maximized;
+                HiddenTaskBar();
+            }
+        }
         public void ResetWin()
         {
             this.FormBorderStyle = FormBorderStyle.SizableToolWindow;
             this.WindowState = FormWindowState.Normal;
             this.FormBorderStyle = FormBorderStyle.None;
-            this.Width = Screen.GetBounds(this).Width;
-            this.Height = Screen.GetBounds(this).Height;
+            this.Width = Screen.PrimaryScreen.Bounds.Width;
+            //this.Height = Screen.GetBounds(this).Height;
+            this.Height = Screen.PrimaryScreen.Bounds.Height;
             this.Top = 0;
             this.Left = 0;
             panel1.Top = this.Height - 30;
